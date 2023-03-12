@@ -53,14 +53,25 @@ namespace MotionMatching
 
         public bool IsValidFeature(int featureIndex)
         {
+            //Debug.Log("featureIndex " + featureIndex);
+            //Debug.Log("Valid length" + Valid.Length);
+            //Debug.Log("Valid[featureIndex]" + Valid[featureIndex]);
             return Valid[featureIndex];
         }
 
         public void GetFeature(NativeArray<float> feature, int featureIndex)
         {
             Debug.Assert(feature.Length == FeatureSize, "Feature vector has wrong size");
+            //Debug.Log("featureIndex = " + featureIndex);
+            //Debug.Log("FeatureSize = " + FeatureSize);
+            //Debug.Log("featureIndex * FeatureSize + i = " + (featureIndex * FeatureSize + " + i"));
+
+            //Debug.Log("Features = " + Features.Length + Features);
+            //Debug.Log("Features minuscula = " + feature.Length + feature);
+
             for (int i = 0; i < FeatureSize; i++)
             {
+                //Debug.Log("Features[blablabla] con i = " + i + " es = a " + Features[featureIndex * FeatureSize + i]);
                 feature[i] = Features[featureIndex * FeatureSize + i];
             }
         }

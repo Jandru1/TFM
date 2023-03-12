@@ -474,6 +474,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   radius: 0.5
   id: 0
+  goal: {x: 0, y: 0, z: 0}
 --- !u!54 &472217319743101090
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1822,7 +1823,7 @@ MonoBehaviour:
   CharacterController: {fileID: 160065219657626604}
   MMData: {fileID: 11400000, guid: 8ddcffd587519e840ba105f93050fcf6, type: 2}
   LockFPS: 1
-  SearchFrames: 10
+  SearchFrames: 5
   UseBVHSearch: 1
   Inertialize: 1
   FootLock: 1
@@ -2166,7 +2167,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2575816349617812841}
   - component: {fileID: 160065219657626604}
-  - component: {fileID: 8154604743209940868}
   m_Layer: 0
   m_Name: Controller
   m_TagString: Untagged
@@ -2204,39 +2204,7 @@ MonoBehaviour:
   SimulationBone: {fileID: 4521166315870286950}
   TrajectoryPositionFeatureName: FuturePosition
   TrajectoryDirectionFeatureName: FutureDirection
-  Path:
-  - Position:
-      x: -10
-      y: 0
-    Velocity: 2.5
-  - Position:
-      x: 10
-      y: 0
-    Velocity: 2.5
---- !u!114 &8154604743209940868
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5689248993029384065}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 14d8336587724e7438d61a3d804f1202, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  SimulationBone: {fileID: 4521166315870286950}
-  TrajectoryPositionFeatureName: FuturePosition
-  TrajectoryDirectionFeatureName: FutureDirection
-  Path:
-  - Position:
-      x: -10
-      y: 0
-    Velocity: 2.5
-  - Position:
-      x: 10
-      y: 0
-    Velocity: 2.5
+  Path: []
 --- !u!1 &5695993800206246312
 GameObject:
   m_ObjectHideFlags: 0

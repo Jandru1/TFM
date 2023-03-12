@@ -601,7 +601,7 @@ namespace MotionMatching
             float3 characterForward = SkeletonTransforms[0].forward;
             if (DebugCurrent)
             {
-                Gizmos.color = new Color(1.0f, 0.0f, 0.5f, 1.0f);
+                Gizmos.color = new Color(1.0f, 0.0f, 0.5f, 1.0f); //rosita oscuro raro
                 Gizmos.DrawSphere(characterOrigin, SpheresRadius);
                 GizmosExtensions.DrawArrow(characterOrigin, characterOrigin + characterForward * 1.5f, thickness: 3);
             }

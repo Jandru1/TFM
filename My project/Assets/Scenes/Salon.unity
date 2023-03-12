@@ -183,7 +183,7 @@ GameObject:
   - component: {fileID: 75751049}
   m_Layer: 0
   m_Name: Paredes
-  m_TagString: Untagged
+  m_TagString: Obstaculos
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -888,8 +888,6 @@ GameObject:
   - component: {fileID: 2052975627}
   - component: {fileID: 2052975626}
   - component: {fileID: 2052975625}
-  - component: {fileID: 2052975629}
-  - component: {fileID: 2052975630}
   - component: {fileID: 2052975631}
   - component: {fileID: 2052975632}
   m_Layer: 0
@@ -978,33 +976,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2052975629
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2052975624}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc653434d1d80c447854e92c135e8e33, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  prefab: {fileID: 6643902854377509746, guid: 3fa46723a7acf824e9e444db669355ab, type: 3}
-  parent: {fileID: 299892028}
-  agents_number: 2
---- !u!114 &2052975630
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2052975624}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 07a170ead8bdc4f4d8e0851a2a7570fc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!54 &2052975631
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1033,15 +1004,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce8874fb40735fe4c9458208e9c37698, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 6643902854377509746, guid: 3fa46723a7acf824e9e444db669355ab, type: 3}
+  prefab: {fileID: 8678519963179876025, guid: 255977de99071b64480ba9577f19bd7d, type: 3}
   parent: {fileID: 299892028}
   maxX: 10
   maxY: 10
-  radius: 0.5
-  agents_number: 50
+  agents_number: 5
   Salon: 1
   Pasillo: 0
   Cruce: 0
   AgentesEnMiDireccion: 0
   NumAgentesEnMiDireccion: 0
   SpecialMat: {fileID: 0}
+  neighborDist: 5
+  MaxNeighbors: 10
+  TimeHorizon: 10
+  TimeHorizonObst: 10
+  radius: 0.5
+  maxSpeed: 1
+  rvo_velocity: {x: 0, y: 0}

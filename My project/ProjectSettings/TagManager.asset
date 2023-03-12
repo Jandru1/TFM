@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Pared
   - CrowdCreatorObject
+  - Obstaculos
   layers:
   - Default
   - TransparentFX

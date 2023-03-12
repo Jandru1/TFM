@@ -176,20 +176,20 @@ MonoBehaviour:
   parent: {fileID: 746395532}
   maxX: 20
   maxY: 5
-  agents_number: 0
+  agents_number: 1
   Salon: 0
   Pasillo: 1
   Cruce: 0
-  AgentesEnMiDireccion: 0
-  NumAgentesEnMiDireccion: 15
-  agent_goal: {x: 0, y: 0}
+  AgentesEnMiDireccion: 1
+  NumAgentesEnMiDireccion: 1
   SpecialMat: {fileID: 2100000, guid: bdfef7750630c3e46b1a5079cf48b292, type: 2}
   neighborDist: 5
   MaxNeighbors: 10
   TimeHorizon: 10
   TimeHorizonObst: 10
   radius: 0.5
-  maxSpeed: 60
+  maxSpeed: 1
+  rvo_velocity: {x: 0, y: 0}
 --- !u!64 &369966235
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -261,7 +261,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 369966232}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 4, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
@@ -362,7 +362,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1018865123
 Transform:
   m_ObjectHideFlags: 0
@@ -371,8 +371,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1018865122}
   m_LocalRotation: {x: -0.5, y: 0.5, z: 0.5, w: 0.5}
-  m_LocalPosition: {x: -10, y: 1, z: -10}
-  m_LocalScale: {x: 2, y: 2, z: 0.5}
+  m_LocalPosition: {x: 20, y: 1, z: -10}
+  m_LocalScale: {x: 1, y: 2, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1583962948}
@@ -557,7 +557,7 @@ GameObject:
   - component: {fileID: 1157705597}
   m_Layer: 0
   m_Name: Pared
-  m_TagString: Untagged
+  m_TagString: Obstaculos
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -787,7 +787,7 @@ GameObject:
   - component: {fileID: 1454218497}
   m_Layer: 0
   m_Name: Pared (3)
-  m_TagString: Untagged
+  m_TagString: Obstaculos
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8

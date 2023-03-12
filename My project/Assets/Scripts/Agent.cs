@@ -11,7 +11,7 @@ public class Agent : MonoBehaviour
     private RVO_Crowd_Generator rvo;
     float x_goal;
     float z_goal;
-    Vector3 goal;
+    public Vector3 goal;
     float distance;
     Vector2 MyInitialCoordinates;
     private string escenario;
@@ -24,6 +24,10 @@ public class Agent : MonoBehaviour
 
     GameObject CrowdCreator;
     RVO_Crowd_Generator my_rvo;
+
+    private float maxSpeed;
+
+    GameObject goal_prueba;
 
     // Start is called before the first frame update
     void Start()
@@ -39,7 +43,8 @@ public class Agent : MonoBehaviour
     {
         CrowdCreator = GameObject.FindGameObjectWithTag("CrowdCreatorObject");
         my_rvo = CrowdCreator.GetComponent<RVO_Crowd_Generator>();
-        SetMyCoordinates();
+        goal_prueba = new GameObject("goal");
+
     }
 
     // Update is called once per frame
@@ -47,8 +52,9 @@ public class Agent : MonoBehaviour
     {
         if(escenario == "Salon")
         {
-            distance = Vector3.Distance(gameObject.transform.position, goal);
+            distance = Vector3.Distance(gameObject.transform.position, goal_prueba.transform.position);
 
+            Debug.Log("distance = " + distance);
             if (distance <= treshold)
             {
                 CreateNewGoal();
@@ -70,11 +76,6 @@ public class Agent : MonoBehaviour
             {
                 x_goal = (maxX);
                 z_goal = Random.Range(-(maxY - 0.5f), (maxY - 0.5f));
-
-                //Creo el objeto GOAL
-                GameObject goal_prueba = new GameObject("goal");
-                goal_prueba.transform.position = new Vector3(x_goal, 0, z_goal);
-
                 //Creo el objeto POSICION INICIAL
             //    GameObject posicion_inicial_GO = new GameObject("Posicion Inicial");
               //  Debug.Log("Pero son " + MyInitialCoordinates.x + " " + MyInitialCoordinates.y);
@@ -121,6 +122,9 @@ public class Agent : MonoBehaviour
         }
 
         goal = new Vector3(x_goal, 0.0f, z_goal);
+
+        goal_prueba.transform.position = goal;
+
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -129,13 +133,13 @@ public class Agent : MonoBehaviour
         {
             if(escenario == "Pasillo" || escenario == "Cruce")
             {
-                Debug.Log("colisiono");
+                Debug.Log("PASO 8: Elimino Agente porque colisiono");
                 my_rvo.RemoveAgent(this);
+               // Destroy(gameObject.transform.parent.gameObject);
                 if (SoyEspecial) my_rvo.CreateSpecialAgent();
                 else if (SameDirectionAsSpecial)my_rvo.CreateAgentInMiDirection();
                 else my_rvo.CreateAgent();
-                Debug.Log("Voy a destruir a " + this.gameObject.transform.parent);
-                Destroy(this.gameObject.transform.parent.gameObject);
+                this.gameObject.transform.parent.gameObject.SetActive(false);
             }
         }
     }
@@ -146,14 +150,20 @@ public class Agent : MonoBehaviour
 
     public virtual void SetPreferredVelocity()
     {
-        Debug.Log("Goal = " + x_goal + " " + z_goal);
-        RVO.Vector2 goalVector = new RVO.Vector2(x_goal, z_goal) - RVO.Simulator.Instance.getAgentPosition(id);
+        Vector2 goal_prueba_POS = new Vector2(goal_prueba.transform.position.x, goal_prueba.transform.position.z);
+        RVO.Vector2 goalVector = new RVO.Vector2(goal_prueba_POS.x, goal_prueba_POS.y) - RVO.Simulator.Instance.getAgentPosition(id);
+
+        Debug.Log("Posicion actual de Joe " + transform.position);
+        Debug.Log("Posición actual del rvo agente = " + RVO.Simulator.Instance.getAgentPosition(id));
+        Debug.Log("goalVector = " + goalVector);
+
         if (RVO.RVOMath.absSq(goalVector) > 1.0f)
         {
             goalVector = RVO.RVOMath.normalize(goalVector);
         }
 
-        RVO.Simulator.Instance.setAgentPrefVelocity(id, goalVector);
+        Debug.Log("Maxspeeed" + maxSpeed);
+        RVO.Simulator.Instance.setAgentPrefVelocity(id, goalVector*maxSpeed);
     }
 
     public virtual void UpdatePos()
@@ -166,16 +176,15 @@ public class Agent : MonoBehaviour
     void Option1()
     {
         RVO.Vector2 pos = RVO.Simulator.Instance.getAgentPosition(id);
-        gameObject.transform.position = new Vector3(pos.x(), 0.0f, pos.y());
+      //  gameObject.transform.position = new Vector3(pos.x(), 0.0f, pos.y());
     }
 
     void Option2()
     {
         Vector3 v = new Vector3(RVO.Simulator.Instance.getAgentVelocity(id).x_, 0.0f, RVO.Simulator.Instance.getAgentVelocity(id).y_);
         Rigidbody rb = gameObject.GetComponent<Rigidbody>();
-        Debug.Log("velocidad en Agent = " + v);
-      //  rb.MovePosition(rb.position + (v*(Time.deltaTime+20)));
-        RVO.Simulator.Instance.setAgentPosition(id, new RVO.Vector2(rb.position.x, rb.position.z));
+      //  rb.MovePosition(rb.position + (v*(Time.deltaTime)));
+      //  RVO.Simulator.Instance.setAgentPosition(id, new RVO.Vector2(rb.position.x, rb.position.z));
       //  RVO.Simulator.Instance.setAgentVelocity(id, new RVO.Vector2(v.x, v.z));
     }
 
@@ -191,7 +200,6 @@ public class Agent : MonoBehaviour
 
     public void SetMaximumDiameter(float x, float y)
     {
-        Debug.Log("Pero no entro aqui");
         maxX = x;
         maxY = y;
     }
@@ -219,8 +227,8 @@ public class Agent : MonoBehaviour
 
     public Vector2 GetGoal()
     {
-        Debug.Log("Goal = " + x_goal + " " +  z_goal);
-        return new Vector2(goal.x, goal.z);
+        Debug.Log("Goal prueba = " + goal_prueba.transform.position);
+        return new Vector2(goal_prueba.transform.position.x, goal_prueba.transform.position.z);
     }
 
     public Vector2 GetInitPosition()
@@ -233,16 +241,13 @@ public class Agent : MonoBehaviour
         x_goal = x;
         z_goal = z;
         goal = new Vector3(x_goal, 0, z_goal);
+
+        goal_prueba.transform.position = goal;
     }
 
-    private void SetMyCoordinates()
+    public void setMaxSpeed(float speed)
     {
-        
-    }
-
-    public void SetInitCoordinates()
-    {
-
+        maxSpeed = speed;
     }
 
 }

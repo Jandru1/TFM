@@ -1,0 +1,13 @@
+timeStep: Este parámetro especifica la cantidad de tiempo que se avanza en cada iteración de la simulación. Un valor más pequeño para timeStep resulta en una simulación más precisa, pero también requiere más tiempo de procesamiento.
+
+neighborDist: Este parámetro define la distancia máxima a la que un agente puede detectar a otros agentes en su vecindario. El vecindario de un agente está compuesto por todos los agentes que se encuentran dentro de esta distancia.
+
+maxNeighbors: Este parámetro especifica el número máximo de vecinos que un agente puede tener en su vecindario.
+
+timeHorizon: Este parámetro establece el horizonte de tiempo máximo para el que un agente considera sus movimientos futuros y los de sus vecinos. Un valor más grande de timeHorizon significa que los agentes consideran un período de tiempo más largo para sus decisiones de movimiento.
+
+timeHorizonObst: Este parámetro define el horizonte de tiempo máximo para el que un agente considera los movimientos futuros de los obstáculos. Un valor más grande de timeHorizonObst significa que los agentes tienen en cuenta un período de tiempo más largo al planificar sus movimientos alrededor de los obstáculos.
+
+radius: Este parámetro especifica el radio del agente. Los agentes se modelan como círculos con este radio y es utilizado para calcular las colisiones con otros agentes y obstáculos.
+
+maxSpeed: Este parámetro establece la velocidad máxima permitida para el agente.
